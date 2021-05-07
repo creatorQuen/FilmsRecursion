@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace FilmsRecursion
 {
@@ -6,7 +7,10 @@ namespace FilmsRecursion
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Node.BoxSizes = new List<int>() { 25, 40 };
+            Node qqq = new Node(100);
+            qqq.CreateGraph();
+            qqq.WriteAllEnds();
         }
     }
 }
