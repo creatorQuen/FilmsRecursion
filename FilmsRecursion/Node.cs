@@ -90,6 +90,57 @@ namespace FilmsRecursion
 
         }
 
+        // Возвращение. Но необходимо EmptyPlace. Пользоваться рекурсивно пользоваться широтным обходом.
+        // Сколько осталось свободного места и мой список. В ноде сравнить самый маленький и перекинуть наверх.
+        // Сортировки поиск минимума.
+        public Result GetResult()
+        {
+            if(Next.Count == 0)
+            {
+                return new Result(EmptyPlace, CurrentBoxes);
+            }
+            else
+            {
+                // Усли есть нвследники.
+                // Просим все собрать.
+                List<Result> results = new List<Result>();
+                foreach (Node q in Next)
+                {
+                    results.Add(q.GetResult());
+                }
 
+                Result minResult = results[0];
+                foreach (Result q in results)
+                {
+                    if(minResult.EmptyPlace > q.EmptyPlace)
+                    {
+                        minResult = q;
+                    }
+                }
+
+                return minResult;
+
+            }
+        }
+
+
+        // Задача поиска решения.
+    }
+
+
+    // Для возвращения за раз два типа. Эта модель класс - у которого много полей.
+    public class Result
+    {
+        public int EmptyPlace;
+
+        // В том случае если не тконцовок возвращаем new result.
+
+        public List<int> CurrentBoxes;
+
+        public Result(int emptyPlace, List<int> currentBoxes)
+        {
+            EmptyPlace = emptyPlace;
+            CurrentBoxes = currentBoxes;
+        }
     }
 }
